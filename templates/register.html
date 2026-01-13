@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Fruit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>🍇 Fruits 🍊</h1>
+            <p class="subtitle">Add details about your favorite fruit 🍍</p>
+        </div>
+
+        <form method="POST" action="/" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Fruit Name</label>
+                <input type="text" name="name" placeholder="e.g., Mango, Apple" required>
+            </div>
+
+            <div class="form-group">
+                <label>Color</label>
+                <input type="text" name="color" placeholder="e.g., Red, Yellow" required>
+            </div>
+
+            <div class="form-group">
+                <label>Taste</label>
+                <input type="text" name="taste" placeholder="e.g., Sweet, Sour" required>
+            </div>
+
+            <div class="form-group">
+                <label>Country of Origin</label>
+                <input type="text" name="country" placeholder="e.g., Philippines, Thailand" required>
+            </div>
+
+            <div class="form-group">
+                <label>Price per Kg</label>
+                <input type="number" step="0.01" name="price" placeholder="e.g., 120.50" required>
+            </div>
+
+            <div class="form-group">
+                <label>Fruit Image 🍓</label>
+                <input type="file" name="image" accept="image/*">
+            </div>
+
+            <button type="submit">Add Fruit</button>
+        </form>
+
+        <div class="entry">
+            <a href="{{ url_for('entries') }}">See All Fruits</a>
+        </div>
+
+    </div>
+</body>
+</html>
