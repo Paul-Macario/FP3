@@ -6,7 +6,6 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.secret_key = "p-a-s-w-o-r-d"
 
-# ===================== DATABASE CONFIG =====================
 database_url = os.getenv("MYSQL_URL")
 
 if database_url and database_url.startswith("mysql://"):
@@ -27,7 +26,7 @@ db = SQLAlchemy(app)
 
 # ===================== MODEL =====================
 class Fruit(db.Model):
-    __tablename__ = 'fruits'
+    __tablename__ = 'fruits'   # ✅ MUST MATCH YOUR MYSQL TABLE NAME
 
     Fruit_ID = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(50))
@@ -36,11 +35,6 @@ class Fruit(db.Model):
     Country_Origin = db.Column(db.String(50))
     Price_Per_Kg = db.Column(db.Numeric(5, 2))
     Image = db.Column(db.String(100))
-
-# ===================== AUTO CREATE TABLE (IMPORTANT) =====================
-@app.before_first_request
-def create_tables():
-    db.create_all()
 
 # ===================== HELPERS =====================
 def allowed_file(filename):
@@ -88,3 +82,4 @@ def entries():
 # ===================== RUN =====================
 if __name__ == "__main__":
     app.run(debug=True)
+add that here
