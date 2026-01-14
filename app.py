@@ -6,8 +6,12 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.secret_key = "p-a-s-w-o-r-d"
 
-# ===================== DATABASE CONFIG =====================
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/nature_db"
+database_url = os.getenv("MYSQL_URL")
+
+if database_url and database_url.startswith("mysql://"):
+    database_url = database_url.replace("mysql://", "mysql+pymysql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # ===================== UPLOAD CONFIG =====================
